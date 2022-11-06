@@ -15,10 +15,8 @@ public class CartItemDto {
 
 	private Date creationDate;
 
-	@NotNull
 	private double price;
 
-	@NotNull
 	private Long cartId;
 
 	public CartItemDto() {
