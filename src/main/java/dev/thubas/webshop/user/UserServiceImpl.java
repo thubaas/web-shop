@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		String token = authService.getToken(user).getToken();
-		SigninResponseDto signinResponseDto = new SigninResponseDto("Signed in successfully", token);
+		SigninResponseDto signinResponseDto = new SigninResponseDto("Signed in successfully", token, user.getId());
 		return signinResponseDto;
 	}
 
