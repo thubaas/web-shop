@@ -35,25 +35,32 @@ public class WishlistController {
 	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@PostMapping("/")
-	public ResponseEntity<Boolean> addWishlist(@RequestParam String token,
+	public ResponseEntity<WishlistDto> addToWishlist(@RequestParam String token,
 			@RequestBody ProductDto productDto) {
 		log.info("TOKEN : {}", token);
 		
 		authService.authenticate(token);
 		User user = authService.getAuthenticatedUser(token);
-		wishlistService.createWishlist(productDto, user);
-		return new ResponseEntity<>(true, HttpStatus.CREATED);
+		WishlistDto wishlist = wishlistService
+				.addToWishlist(productDto, user);
+		return new ResponseEntity<>(wishlist, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/")
-	public ResponseEntity<List<WishlistItemDto>> getWishlist(
+	public ResponseEntity<List<WishlistDto>> getWishlist(
 			@RequestParam String token) {
 		log.info("TOKEN : {}", token);
 		authService.authenticate(token);
 		User user = authService.getAuthenticatedUser(token);
-		List<WishlistItemDto> wishlist = wishlistService.getWishlistByUser(user); 
+		List<WishlistDto> wishlist = wishlistService.getWishlistByUser(user); 
 		return ResponseEntity.ok(wishlist);
 	}
+	
+	
+//	@PutMapping("/")
+//	public ResponseEntity<Boolean> moveAllToCart(@RequestParam String token) {
+//		
+//	}
 	
 	@DeleteMapping("/{wishlistId}")
 	public ResponseEntity<Boolean> deleteWishlist(@RequestParam String token, 

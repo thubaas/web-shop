@@ -1,5 +1,6 @@
 package dev.thubas.webshop.cart;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,6 +70,8 @@ public class Cart {
 	}
 
 	public List<CartItem> getItems() {
+		if(items == null)
+			return new ArrayList<>();
 		return items;
 	}
 
@@ -95,8 +98,9 @@ public class Cart {
 	
 	private double calculateTotalCost() {
 		double total = 0;
-		for(CartItem item : items)
-			total += item.getQuantity() * item.getProduct().getPrice();
+		if(items != null)
+			for(CartItem item : items)
+				total += item.getQuantity() * item.getProduct().getPrice();
 		return total;
 	}
 

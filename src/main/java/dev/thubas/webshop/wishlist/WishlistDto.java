@@ -4,23 +4,23 @@ import java.util.Date;
 
 import dev.thubas.webshop.product.ProductDto;
 
-public class WishlistItemDto {
+public class WishlistDto {
 
 	private Long id;
 
 	private Date creationDate;
 
-	private ProductDto productDto;
+	private ProductDto product;
 
-	public WishlistItemDto() {
+	public WishlistDto() {
 		super();
 	}
 
-	public WishlistItemDto(Long id, Date creationDate, ProductDto productDto) {
+	public WishlistDto(Long id, Date creationDate, ProductDto productDto) {
 		super();
 		this.id = id;
 		this.creationDate = creationDate;
-		this.productDto = productDto;
+		this.product = productDto;
 	}
 
 	public Long getId() {
@@ -39,12 +39,12 @@ public class WishlistItemDto {
 		this.creationDate = creationDate;
 	}
 
-	public ProductDto getProductDto() {
-		return productDto;
+	public ProductDto getProduct() {
+		return product;
 	}
 
-	public void setProductDto(ProductDto productDto) {
-		this.productDto = productDto;
+	public void setProduct(ProductDto product) {
+		this.product = product;
 	}
 
 }

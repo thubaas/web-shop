@@ -1,5 +1,7 @@
 package dev.thubas.webshop.cart;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,23 +29,36 @@ public class CartController {
 
 	@Autowired
 	private AuthService authService;
-	
+		
 	@PostMapping("/")
-	public ResponseEntity<Cart> addCart(
+	public ResponseEntity<CartDto> addToCart(
 			@RequestParam String token, 
-			@RequestBody Cart cart) {
+			@RequestBody CartItemDto cartItemDto) {
 		authService.authenticate(token);
 		User user = authService.getAuthenticatedUser(token);
-		Cart savedCart = cartService.addCart(cart, user);
+		CartDto savedCart = cartService.addToCart(cartItemDto, user);
 		return new ResponseEntity<>(savedCart, HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/")
-	public ResponseEntity<Cart> getCart(@RequestParam String token) {
+	public ResponseEntity<CartDto> getCart(@RequestParam String token) {
 		authService.authenticate(token);
 		User user = authService.getAuthenticatedUser(token);
-		Cart cart = cartService.getCartByUser(user);
+		CartDto cart = cartService.getCartByUser(user);
 		return new ResponseEntity<>(cart, HttpStatus.OK);
+	}
+	
+	@PutMapping("/{cartId}/cartItems/{cartItemId}/")
+	public ResponseEntity<CartDto> updateCart(
+			@RequestParam String token,
+			@PathVariable Long cartId,
+			@PathVariable Long cartItemId,
+			@RequestBody CartItemDto cartItemDto) {
+		authService.authenticate(token);
+		User user = authService.getAuthenticatedUser(token);
+		CartDto cart = cartService.updateCart(cartItemDto, user);
+		return new ResponseEntity<>(cart, HttpStatus.OK);
+		
 	}
 	
 	@DeleteMapping("/{cartId}")
@@ -52,5 +68,15 @@ public class CartController {
 		authService.authenticate(token);
 		boolean isRemoved = cartService.deleteCart(cartId);
 		return new ResponseEntity<>(isRemoved, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{cartId}/cart-items/{cartItemId}")
+	public ResponseEntity<Boolean> deleteCartItem(
+			@RequestParam String token,
+			@PathVariable Long cartId,
+			@PathVariable Long cartItemId) {
+		 authService.authenticate(token);
+		 Boolean res = cartService.deleteCartItem(cartId, cartItemId);
+		return ResponseEntity.ok(res);
 	}
 }

@@ -71,6 +71,13 @@ public class ProductController {
 		return new ResponseEntity<>(products, HttpStatus.OK);
 	}
 	
+	@GetMapping("/search/{productName}")
+	public ResponseEntity<List<ProductDto>> searchProducts(@PathVariable String productName) {
+		List<ProductDto> matchedProducts = productService
+				.searchByName(productName);
+		return new ResponseEntity<>(matchedProducts, HttpStatus.OK);
+	}
+	
 	@DeleteMapping("/{productId}")
 	public ResponseEntity<Boolean> deleteProduct(
 			@RequestParam String token,

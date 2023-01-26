@@ -8,7 +8,7 @@ public class CartDto {
 	private Long id;
 	private double totalCost;
 	private Date creationDate;
-	private List<CartItemDto> cartItems;
+	private List<CartItemDto> items;
 	private Long userId;
 	
 	public CartDto() {
@@ -21,7 +21,7 @@ public class CartDto {
 		this.id = id;
 		this.totalCost = totalCost;
 		this.creationDate = creationDate;
-		this.cartItems = cartItems;
+		this.items = cartItems;
 		this.userId = userId;
 	}
 
@@ -49,12 +49,12 @@ public class CartDto {
 		this.creationDate = creationDate;
 	}
 
-	public List<CartItemDto> getCartItems() {
-		return cartItems;
+	public List<CartItemDto> getItems() {
+		return items;
 	}
 
-	public void setCartItems(List<CartItemDto> cartItems) {
-		this.cartItems = cartItems;
+	public void setItems(List<CartItemDto> items) {
+		this.items = items;
 	}
 
 	public Long getUserId() {

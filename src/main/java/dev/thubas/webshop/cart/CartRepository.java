@@ -11,5 +11,6 @@ import dev.thubas.webshop.user.User;
 public interface CartRepository extends JpaRepository<Cart, Long> {
 
 	Optional<Cart> findByUser(User user);
+	void deleteByUser(User user);
 
 }

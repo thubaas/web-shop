@@ -8,6 +8,7 @@ public interface ProductService {
 	
 	ProductDto addProduct(ProductDto productDto);
 	List<ProductDto> getProducts();
+	List<ProductDto> searchByName(String productName);
 	ProductDto updateProduct(Long productId, ProductDto productDto);
 	boolean existsById(Long productId);
 	ProductDto getProductById(Long id) throws ProductNotFoundException;

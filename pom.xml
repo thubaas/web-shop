@@ -63,6 +63,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Stripe dependency -->
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>21.0.0</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

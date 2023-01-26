@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(signupDto.getEmail());
 		user.setFirstname(signupDto.getFirstname());
 		user.setLastname(signupDto.getLastname());
+		user.setRole(Role.valueOf(signupDto.getRole()));
 		try {
 			user.setPassword(hashPassword(signupDto.getPassword()));
 		} catch (NoSuchAlgorithmException e) {
@@ -64,7 +65,11 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		String token = authService.getToken(user).getToken();
-		SigninResponseDto signinResponseDto = new SigninResponseDto("Signed in successfully", token, user.getId());
+		SigninResponseDto signinResponseDto = new SigninResponseDto(
+				user.getFirstname() + " " + user.getLastname(), 
+				token, 
+				user.getId(), 
+				user.getRole().name());
 		return signinResponseDto;
 	}
 

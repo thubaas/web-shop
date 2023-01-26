@@ -43,12 +43,10 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductDto> getProducts() {
 		List<Product> products = productRepository.findAll();
-		List<ProductDto> productDtos = products
-				.stream()
-				.map(p -> new ProductDto(p))
-				.collect(Collectors.toList());
+		List<ProductDto> productDtos = mapProductsToDto(products);
 		return productDtos;
 	}
+
 
 	@Override
 	public ProductDto updateProduct(Long productId, ProductDto productDto) {
@@ -92,5 +90,21 @@ public class ProductServiceImpl implements ProductService {
 		return productRepository.findById(id)
 				.orElseThrow(() -> new ProductNotFoundException(msg));
 	}
+
+	@Override
+	public List<ProductDto> searchByName(String productName) {
+		List<Product> matchedProducts = productRepository
+				.findByNameContainingIgnoreCase(productName);
+		return mapProductsToDto(matchedProducts);
+	}
+	
+	private List<ProductDto> mapProductsToDto(List<Product> products) {
+		List<ProductDto> productDtos = products
+				.stream()
+				.map(p -> new ProductDto(p))
+				.collect(Collectors.toList());
+		return productDtos;
+	}
+
 
 }

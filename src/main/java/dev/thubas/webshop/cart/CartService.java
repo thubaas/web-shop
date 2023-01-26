@@ -4,8 +4,11 @@ import dev.thubas.webshop.user.User;
 
 public interface CartService {
 	
-	Cart addCart(Cart cart, User user);
+	CartDto addToCart(CartItemDto cartItemDto, User user);
+	CartDto updateCart(CartItemDto cartItemDto, User user);
 	boolean deleteCart(Long cartId);
-	Cart getCartById(Long cartId);
-	Cart getCartByUser(User user);
+	boolean deleteCartItem(Long cartId,Long cartItemId);
+	CartDto getCartById(Long cartId);
+	CartDto getCartByUser(User user);
+	void deleteByUser(User user);
 }

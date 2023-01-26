@@ -18,6 +18,10 @@ public class CartItemDto {
 	private double price;
 
 	private Long cartId;
+	
+	private String imageUrl;
+	
+	private String productName;
 
 	public CartItemDto() {
 		super();
@@ -25,7 +29,7 @@ public class CartItemDto {
 
 	public CartItemDto(Long id, @NotNull Integer quantity, 
 			@NotNull Long productId, Date creationDate, @NotNull double price,
-			@NotNull Long cartId) {
+			@NotNull Long cartId, String imageUrl, String productName) {
 		super();
 		this.id = id;
 		this.quantity = quantity;
@@ -33,6 +37,8 @@ public class CartItemDto {
 		this.creationDate = creationDate;
 		this.price = price;
 		this.cartId = cartId;
+		this.imageUrl = imageUrl;
+		this.productName = productName;
 	}
 
 	public Long getId() {
@@ -82,13 +88,34 @@ public class CartItemDto {
 	public void setCartId(Long cartId) {
 		this.cartId = cartId;
 	}
+	
+	
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
 	@Override
 	public String toString() {
-		return "CartItemDto [id=" + id + ", quantity=" + quantity 
-				+ ", productId=" + productId + ", creationDate="
-				+ creationDate + ", price=" + price + ", cartId=" 
-				+ cartId + "]";
+		return "CartItemDto [id=" + id + ", quantity=" + quantity + ","
+				+ " productId=" + productId + ", creationDate="
+				+ creationDate + ", price=" + price + ", cartId=" + cartId 
+				+ ", imageUrl=" + imageUrl + ", productName="
+				+ productName + "]";
 	}
+
+
 	
 }

@@ -3,6 +3,8 @@ package dev.thubas.webshop.user;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,19 +21,22 @@ public class User {
 	private String lastname;
 	private String email;
 	private String password;
+	@Enumerated(EnumType.STRING)
+	private Role role; 
 
 	public User() {
 		super();
 	}
 
 	public User(Long id, String firstname, String lastname, String email, 
-			String password) {
+			String password, Role role) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.password = password;
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -73,12 +78,20 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" 
 	+ lastname + ", email=" + email
-				+ ", password=" + password + "]";
+				+ ", password=" + password + ", role=" + role.name() + "]";
 	}
 
 	@Override
@@ -99,7 +112,8 @@ public class User {
 				&& Objects.equals(firstname, other.firstname)
 				&& Objects.equals(id, other.id) 
 				&& Objects.equals(lastname, other.lastname)
-				&& Objects.equals(password, other.password);
+				&& Objects.equals(password, other.password)
+				&& Objects.equals(role,  other.role);
 	}
 
 }
