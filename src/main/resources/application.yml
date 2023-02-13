@@ -1,0 +1,28 @@
+#jasypt
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndTripleDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    password: ${JASYPT_SECRET_KEY}
+
+#Postgresql DB
+spring:
+  sql:
+    init:
+      mode: always
+      platform: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/web_shop_db
+    username: ENC(8h6SimL406N025Pa1vk5ew==)
+    password: ENC(0qTPrzNA7rD8GlaY65jzZQ==)
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        '[format_sql]': true
+    hibernate:
+      ddl-auto: update
+      
+BASE_URL: http://localhost:4300/
+STRIPE_SECRET_KEY: ENC(4u18VOTjRT0pUynQwJxSMN5mVYTcdg3441gyA+K8Gr90dwmajzDcLyUZ/unCLMLb/EQjAT/Cp55Vf42GgJGAjP+ye3FCYN+pq5gSaTCKVR8xhIJKHk59GjPIy1XyW4oeT08r90HBPy2p3u/kb6xI422XL2jMaoPh)
+
