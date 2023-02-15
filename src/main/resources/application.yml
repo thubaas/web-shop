@@ -12,7 +12,7 @@ STRIPE_SECRET_KEY: ENC(4u18VOTjRT0pUynQwJxSMN5mVYTcdg3441gyA+K8Gr90dwmajzDcLyUZ/
 spring:
   profiles:
     active:
-    - dev
+    - prod
 
 ---
 
