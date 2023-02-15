@@ -1,3 +1,4 @@
+
 #jasypt
 jasypt:
   encryptor:
@@ -5,8 +6,22 @@ jasypt:
     iv-generator-classname: org.jasypt.iv.NoIvGenerator
     password: ${JASYPT_SECRET_KEY}
 
+BASE_URL: http://localhost:4300/
+STRIPE_SECRET_KEY: ENC(4u18VOTjRT0pUynQwJxSMN5mVYTcdg3441gyA+K8Gr90dwmajzDcLyUZ/unCLMLb/EQjAT/Cp55Vf42GgJGAjP+ye3FCYN+pq5gSaTCKVR8xhIJKHk59GjPIy1XyW4oeT08r90HBPy2p3u/kb6xI422XL2jMaoPh)
+
+spring:
+  profiles:
+    active:
+    - dev
+
+---
+
 #Postgresql DB
 spring:
+  config:
+    activate:
+      on-profile:
+      - dev
   sql:
     init:
       mode: always
@@ -22,7 +37,27 @@ spring:
         '[format_sql]': true
     hibernate:
       ddl-auto: update
-      
-BASE_URL: http://localhost:4300/
-STRIPE_SECRET_KEY: ENC(4u18VOTjRT0pUynQwJxSMN5mVYTcdg3441gyA+K8Gr90dwmajzDcLyUZ/unCLMLb/EQjAT/Cp55Vf42GgJGAjP+ye3FCYN+pq5gSaTCKVR8xhIJKHk59GjPIy1XyW4oeT08r90HBPy2p3u/kb6xI422XL2jMaoPh)
+     
+---
 
+spring:
+  config:
+    activate:
+      on-profile:
+      - prod
+  sql:
+    init:
+      mode: always
+      platform: postgres
+  datasource:
+    url: ENC(nGD+MJAQ7hlsihUcHPmdLeea8ecKtdsZWpsZop1b/Ona568yr0R85vA69op2pCJAeGHqTMtzV0a5PN4GtJvhL2W90H0vlaFDFqadgjujv6oVYjKOaAy9Cl3XBhwHbZpPqWkj+0k0AA4=)
+    username: ENC(QC5sX4AT7ydzK7DPO4A9ZA==)
+    password: ENC(NP4dQZwIU6+pJPvqzMK6tSZQavwjmOO4S5sdCiXHAeSyDk0apYiXYrVytjP/oO1P)
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        '[format_sql]': true
+    hibernate:
+      ddl-auto: update      
+  
