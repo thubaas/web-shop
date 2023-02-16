@@ -31,7 +31,7 @@ public class CartServiceImpl implements CartService {
 
 		Optional<Cart> cartOptional = cartRepository.findByUser(user);
 		Cart cart;
-		if (cartOptional.isEmpty()) {
+		if (!cartOptional.isPresent()) {
 			cart = new Cart(null, new Date(), null, user, 0);
 			cart = cartRepository.save(cart);
 		} else {

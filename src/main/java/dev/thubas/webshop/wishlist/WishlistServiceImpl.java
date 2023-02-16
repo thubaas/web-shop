@@ -59,7 +59,7 @@ public class WishlistServiceImpl implements WishlistService {
 		
 		Optional<Cart> cartOptional = cartRepository.findByUser(user);
 		Cart cart;
-		if(cartOptional.isEmpty()) {
+		if(!cartOptional.isPresent()) {
 			cart = new Cart(null, new Date(), null, user, 0);
 			cart = cartRepository.save(cart);
 		} else {
@@ -110,7 +110,7 @@ public class WishlistServiceImpl implements WishlistService {
 		Optional<Wishlist> saveWishlistOptional = wishlistRepository
 				.findByProductAndUser(product, user);
 		Wishlist savedWishlist;
-		if(saveWishlistOptional.isEmpty()) {
+		if(!saveWishlistOptional.isPresent()) {
 			Wishlist wishlist = new Wishlist(user, product);
 			savedWishlist = wishlistRepository.save(wishlist);
 		} else {
