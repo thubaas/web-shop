@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:latest as build
+FROM openjdk:8-jdk-alpine as build
 WORKDIR /workspace/app
 COPY mvnw .
 COPY .mvn .mvn
