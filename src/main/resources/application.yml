@@ -50,6 +50,7 @@ spring:
       mode: always
       platform: postgres
   datasource:
+    driverClassName: org.postgresql.Driver
     url: ${DB_INTERNAL_URI}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
