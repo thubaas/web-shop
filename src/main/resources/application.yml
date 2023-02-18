@@ -50,9 +50,9 @@ spring:
       mode: always
       platform: postgres
   datasource:
-    url: ${DB_INTERNAL_URI}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgres://tsdev:AL0912wGGdynhmVJp5bNy6moAtiWiU9z@dpg-cfl4mu9mbjsn9e82i8j0-a/web_shop_db
+    username: tsdev
+    password: AL0912wGGdynhmVJp5bNy6moAtiWiU9z
 #    url: ENC(nGD+MJAQ7hlsihUcHPmdLeea8ecKtdsZWpsZop1b/Ona568yr0R85vA69op2pCJAeGHqTMtzV0a5PN4GtJvhL2W90H0vlaFDFqadgjujv6oVYjKOaAy9Cl3XBhwHbZpPqWkj+0k0AA4=)
 #    username: ENC(QC5sX4AT7ydzK7DPO4A9ZA==)
 #    password: ENC(NP4dQZwIU6+pJPvqzMK6tSZQavwjmOO4S5sdCiXHAeSyDk0apYiXYrVytjP/oO1P)
