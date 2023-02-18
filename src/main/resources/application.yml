@@ -50,7 +50,7 @@ spring:
       mode: always
       platform: postgres
   datasource:
-    url: jdbc:postgresql://${{ PGUSER }}:${{ PGPASSWORD }}@${{ PGHOST }}:${{ PGPORT }}/${{ PGDATABASE }}
+    url: ${DB_URi}
     username: ${PGUSER}
     password: ${PGPASSWORD}
 #    url: ENC(nGD+MJAQ7hlsihUcHPmdLeea8ecKtdsZWpsZop1b/Ona568yr0R85vA69op2pCJAeGHqTMtzV0a5PN4GtJvhL2W90H0vlaFDFqadgjujv6oVYjKOaAy9Cl3XBhwHbZpPqWkj+0k0AA4=)
