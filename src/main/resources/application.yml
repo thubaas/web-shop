@@ -50,9 +50,9 @@ spring:
       mode: always
       platform: postgres
   datasource:
-    url: ${DB_INTERNAL_URI}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://${{ PGUSER }}:${{ PGPASSWORD }}@${{ PGHOST }}:${{ PGPORT }}/${{ PGDATABASE }}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
 #    url: ENC(nGD+MJAQ7hlsihUcHPmdLeea8ecKtdsZWpsZop1b/Ona568yr0R85vA69op2pCJAeGHqTMtzV0a5PN4GtJvhL2W90H0vlaFDFqadgjujv6oVYjKOaAy9Cl3XBhwHbZpPqWkj+0k0AA4=)
 #    username: ENC(QC5sX4AT7ydzK7DPO4A9ZA==)
 #    password: ENC(NP4dQZwIU6+pJPvqzMK6tSZQavwjmOO4S5sdCiXHAeSyDk0apYiXYrVytjP/oO1P)
