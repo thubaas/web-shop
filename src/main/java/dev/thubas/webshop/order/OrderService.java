@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import dev.thubas.webshop.cart.Cart;
 import dev.thubas.webshop.cart.CartDto;
 import dev.thubas.webshop.cart.CartItemDto;
 import dev.thubas.webshop.cart.CartService;
@@ -76,6 +75,11 @@ public class OrderService {
 				.build();
 		
 		Session session = Session.create(params);
+		long amountTotal = sessionItemsList.stream()
+				.mapToLong(sessionItem -> sessionItem.getAmount() * sessionItem.getQuantity())
+				.sum();
+		session.setAmountTotal(amountTotal);
+		
 		log.info("Session : {}", session);
 		
 		deleteCart(user, checkoutItems);
